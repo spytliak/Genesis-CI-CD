@@ -1,6 +1,8 @@
 # Genesis-terraform-ansible-app
 The repository is for Genesis DevOps School. 
 
+[![GENESIS DevOps School](https://github.com/spytliak/Genesis-CI-CD/actions/workflows/main.yml/badge.svg)](https://github.com/spytliak/Genesis-CI-CD/actions/workflows/main.yml)
+[![Terraform Destroy](https://github.com/spytliak/Genesis-CI-CD/actions/workflows/destroy.yml/badge.svg)](https://github.com/spytliak/Genesis-CI-CD/actions/workflows/destroy.yml)
 
 ### Description
 The repo is for creating and configuring an infrastructure in the AWS cloud for the RESTful API application.  
