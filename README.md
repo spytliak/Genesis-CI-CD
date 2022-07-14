@@ -1,18 +1,18 @@
-# Genesis-terraform-ansible-app
+# Genesis-CI-CD 
 The repository is for Genesis DevOps School. 
 
 [![GENESIS DevOps School](https://github.com/spytliak/Genesis-CI-CD/actions/workflows/main.yml/badge.svg)](https://github.com/spytliak/Genesis-CI-CD/actions/workflows/main.yml)
 [![Terraform Destroy](https://github.com/spytliak/Genesis-CI-CD/actions/workflows/destroy.yml/badge.svg)](https://github.com/spytliak/Genesis-CI-CD/actions/workflows/destroy.yml)
 
 ### Description
-The repo is for creating and configuring an infrastructure in the AWS cloud for the RESTful API application.  
-Terraform creates: vpc, ec2 instance, RDS, ALB. Also, generate ssh_key, hosts and env files for Ansible.  
-Ansible configures instance, copy files and run docker-compose.  
+The repo is for creating and configuring an infrastructure in the AWS cloud by *Github Actions* (**CI/CD**) for the RESTful API application.  
+Terraform creates: VPC, 2 ec2 instances, RDS, ALB. Also, generate ssh_key, hosts and env files for Ansible.  
+Ansible configures instance, copy files, run docker-compose and make health check  
 
 #### Architecture AWS
 ![architecture](images/genesis_aws2.png)  
 
-#### Requirements
+#### Requirements for local deploy
 There are packages below that should be installed on the (local) host where you'll be running deploy:
  * python >= 3.7
  * terraform >= 1.0.0
@@ -21,6 +21,18 @@ There are packages below that should be installed on the (local) host where you'
 
 #### Supported OS
 * Target linux instance should have Ubuntu >= 18 
+
+### CI/CD 
+Workflows:
+* [main.yml](/.github/workflows/main.yml)               - the main workflow (Linter, Build and push docker image, Deploy, Report), included TF and Ansible Debug
+* [destroy.yml](/.github/workflows/destroy.yml)         - the manual terraform destroy, included TF and Ansible Debug   
+
+Jobs:
+  * Python linter 
+  * Build and push docker image 
+  * Deploy
+  * Report
+  * Terraform Destroy
 
 ### Terraform
 
@@ -126,7 +138,7 @@ The roles are in [roles](/ansible/roles/) subdirectory.
 ```
 
 
-#### Installation instructions to build the project
+#### Installation instructions to build the project by **local**
 
 *1. Get source code for install project:*  
 ```
@@ -149,3 +161,10 @@ ansible-playbook -i inventory/hosts.ini playbooks/genesis_app.yml
 
 ### Outputs
 Link to examples with full output for 2 methods: https://gist.github.com/spytliak/2fb0ae43ab963604fb27960b37a447a3
+
+### Check image in docker-compose
+```
+[sepy0416@WS-17690 project_GENESIS]$ ssh -i genesis_ssh_key.pem  ubuntu@44.204.125.91 grep image ./project-genesis/docker-compose.yml
+    image: spytliak/genesis-flask-rest-api:13065f7
+```
+
