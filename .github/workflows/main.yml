@@ -156,14 +156,14 @@ jobs:
 
     - name: Set APP instances ip output
       id: APP_instances_ip
-      if: id == success
+      if: steps.tf_apply.outcome == success &&  steps.playbook.outcome == success
       run: echo "::set-output name=hosts::$(terraform output -json APP_instances_ip)"
 
   report:
     name: Report
     runs-on: ubuntu-latest
     continue-on-error: true
-    if: job.deploy.tf_apply.status == success  &&  job.deploy.playbook.status === success
+    if: job.deploy.status == success
     needs: deploy
     strategy:
       max-parallel: 2
