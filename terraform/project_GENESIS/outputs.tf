@@ -45,7 +45,7 @@ output "APP_instances_info" {
 
 output "APP_instances_ip" {
   description = "Instances ip"
-  value       = replace(replace(replace(jsonencode(aws_instance.app[*].public_ip), "[", ""), "]", ""), "\"", "'") # [for k in aws_instance.app[*] : k.public_ip]  # jsonencode(aws_instance.app[*].public_ip)
+  value       = replace(jsonencode(aws_instance.app[*].public_ip), "\"", "'") # [for k in aws_instance.app[*] : k.public_ip]  # jsonencode(aws_instance.app[*].public_ip)
 }
 
 #-----------------------------------------------------------------------
