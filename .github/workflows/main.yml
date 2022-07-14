@@ -175,10 +175,12 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        hosts: ${{ needs.deploy.outputs.hosts }}  # ["52.23.238.235","34.204.89.42"] 
+        hosts: ["52.23.238.235","34.204.89.42"] # ${{ needs.deploy.outputs.hosts }}  # ["52.23.238.235","34.204.89.42"] 
         
     steps:
-
+      - name: check hosts
+        run: echo ${{ needs.deploy.outputs.hosts }}
+        
       - name: Health Check status
         uses: jtalk/url-health-check-action@v2
         with:
