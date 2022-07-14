@@ -106,8 +106,8 @@ jobs:
         cache: 'pip'
 
     # Install the latest version of Ansible (All actions use old version)
-    - name: Setup Ansible
-      run: pip install ansible --user
+    - name: Setup Ansible and jq
+      run: pip install ansible jq --user
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
