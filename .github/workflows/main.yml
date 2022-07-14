@@ -9,6 +9,21 @@ on:
       - main
 
   workflow_dispatch:
+     inputs:
+       TF_LOG:
+        description: 'Terraform LOG'
+        required: false
+        default: 'INFO' 
+        type: choice
+        options:
+        - INFO
+        - DEBUG
+        - TRACE
+       ANSIBLE_DEBUG:
+         type: boolean
+         required: false
+         default: false
+         description: 'Ansible Debug'
 
 env:
   REGISTRY: spytliak/genesis-flask-rest-api
@@ -63,7 +78,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_push_docker
     env:
-      TF_LOG: OFF   # INFO, TRACE, DEBUG 
+      TF_LOG: ${{ inputs.TF_LOG }}
+      ANSIBLE_DEBUG: ${{ inputs.ANSIBLE_DEBUG }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       TAG: ${{ needs.build_and_push_docker.outputs.commit_hash }}

@@ -8,14 +8,23 @@ on:
         required: true
         default: false
         description: Destroy
+      TF_LOG:
+        description: 'Terraform LOG'
+        required: false
+        default: 'INFO' 
+        type: choice
+        options:
+        - INFO
+        - DEBUG
+        - TRACE
 
 jobs:
   destroy:
     name: Destroy
     runs-on: ubuntu-latest
-    if: ${{ inputs.destroy }} == true # github.event.inputs.destroy == true
+    if: ${{ inputs.destroy }} == true
     env:
-      TF_LOG: OFF   # INFO, TRACE, DEBUG 
+      TF_LOG: ${{ inputs.TF_LOG }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
