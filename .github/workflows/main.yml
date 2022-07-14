@@ -170,7 +170,7 @@ jobs:
     name: Report
     runs-on: ubuntu-latest
     continue-on-error: true
-    if: job.deploy.status == 'success'
+    if: jobs.deploy.status == 'success'
     needs: deploy
     strategy:
       max-parallel: 2
