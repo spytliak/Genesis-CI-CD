@@ -144,7 +144,7 @@ jobs:
     - name: Terraform Apply
       id: tf_apply
       continue-on-error: false
-      if: teps.tf_plan.outcome == success
+      if: steps.tf_plan.outcome == success
       #if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
 
