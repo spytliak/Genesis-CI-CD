@@ -45,7 +45,7 @@ output "APP_instances_info" {
 
 output "APP_instances_ip" {
   description = "Instances ip"
-  value       = [for k in aws_instance.app[*] : k.public_ip]
+  value       =  jsonencode(aws_instance.app[*].public_ip) #[for k in aws_instance.app[*] : k.public_ip]
 }
 
 #-----------------------------------------------------------------------
