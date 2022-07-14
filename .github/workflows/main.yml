@@ -175,11 +175,11 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        hosts: ${{ needs.deploy.outputs.hosts }}
+        hosts: ["52.23.238.235","34.204.89.42"] # ${{ needs.deploy.outputs.hosts }}
         
     steps:
 
       - name: Check deployment status
         uses: wei/curl@master
         with:
-          args: http://${{ matrix.host }}:5000/api/health-check/ok
+          args: http://${{ matrix.hosts }}:5000/api/health-check/ok
