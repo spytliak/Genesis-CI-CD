@@ -164,7 +164,7 @@ jobs:
     - name: Set APP instances ip output
       id: APP_instances_ip
       if: steps.tf_apply.outcome == 'success' &&  steps.playbook.outcome == 'success'
-      run: echo "::set-output name=hosts::$(terraform output -raw APP_instances_ip )"
+      run: echo "::set-output name=hosts::$(terraform output APP_instances_ip )"
 
   report:
     name: Report
