@@ -166,8 +166,16 @@ jobs:
     # Set ip for matrix heath check
     - name: Set APP instances ip output
       id: APP_instances_ip
+      continue-on-error: true
       if: steps.tf_apply.outcome == 'success' &&  steps.playbook.outcome == 'success'
       run: echo "::set-output name=hosts::$(terraform output APP_instances_ip | jq -rc)"
+
+    - name: Upload ssh-key
+      if: steps.APP_instances_ip.outcome == 'success'
+      uses: actions/upload-artifact@v3
+      with:
+        name: genesis_ssh_key
+        path: genesis_ssh_key.pem
 
   report:
     name: Report
@@ -190,3 +198,12 @@ jobs:
           url: http://${{ matrix.hosts }}:5000/api/health-check/ok
           max-attempts: 3
           retry-delay: 2s
+
+      - name: Notification to Slack
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always() 
