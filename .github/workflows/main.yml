@@ -108,8 +108,8 @@ jobs:
         cache: 'pip'
 
     # Install the latest version of Ansible (All actions use old version)
-    - name: Setup Ansible
-      run: pip install ansible --user
+    - name: Setup Ansible and jq
+      run: pip install ansible jq --user
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
@@ -167,7 +167,7 @@ jobs:
     - name: Set APP instances ip output
       id: APP_instances_ip
       if: steps.tf_apply.outcome == 'success' &&  steps.playbook.outcome == 'success'
-      run: echo "::set-output name=hosts::$(terraform output APP_instances_ip)"
+      run: echo "::set-output name=hosts::$(terraform output APP_instances_ip | jq -rc)"
 
   report:
     name: Report
