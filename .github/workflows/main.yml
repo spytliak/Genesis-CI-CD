@@ -179,7 +179,9 @@ jobs:
         
     steps:
 
-      - name: Check deployment status
-        uses: wei/curl@master
+      - name: Health Check status
+        uses: jtalk/url-health-check-action@v2
         with:
-          args: http://${{ matrix.hosts }}:5000/api/health-check/ok
+          url: http://${{ matrix.hosts }}:5000/api/health-check/ok
+          max-attempts: 3
+          retry-delay: 2s
