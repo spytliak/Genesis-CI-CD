@@ -162,7 +162,7 @@ ansible-playbook -i inventory/hosts.ini playbooks/genesis_app.yml
 ### Outputs
 Link to examples with full output for 2 methods: https://gist.github.com/spytliak/2fb0ae43ab963604fb27960b37a447a3
 
-### Check image in docker-compose
+### Check image in docker-compose CI/CD
 ```
 [sepy0416@WS-17690 project_GENESIS]$ ssh -i genesis_ssh_key.pem  ubuntu@44.204.125.91 grep image ./project-genesis/docker-compose.yml
     image: spytliak/genesis-flask-rest-api:13065f7
