@@ -44,7 +44,7 @@ output "APP_instances_info" {
 }
 
 output "APP_instances_ip" {
-  description = "Info about instances"
+  description = "Instances ip"
   value       = [for k in aws_instance.app[*] : k.public_ip]
 }
 
