@@ -175,7 +175,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: genesis_ssh_key
-        path: genesis_ssh_key.pem
+        path: ../terraform/project_GENESIS/genesis_ssh_key.pem
 
   report:
     name: Report
