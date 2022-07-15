@@ -25,7 +25,7 @@ There are packages below that should be installed on the (local) host where you'
 ### CI/CD 
 Workflows:
 * [main.yml](/.github/workflows/main.yml)               - the main workflow (Linter, Build and push docker image, Deploy, Health Check, Report(Slack)), included TF and Ansible Debug for manual troubleshooting
-* [destroy.yml](/.github/workflows/destroy.yml)         - the manual terraform destroy, included TF and Ansible Debug   
+* [destroy.yml](/.github/workflows/destroy.yml)         - the manual terraform destroy, included TF Debug   
 
 Jobs:
   * Python Linter 
@@ -163,7 +163,7 @@ ansible-playbook -i inventory/hosts.ini playbooks/genesis_app.yml
 ### Outputs
 Link to examples with full output for 2 methods (manual): https://gist.github.com/spytliak/2fb0ae43ab963604fb27960b37a447a3
 
-### Check image in docker-compose CI/CD after CI/CD deploy
+### Check image in docker-compose after CI/CD deploy
 ```
 [sepy0416@WS-17690 project_GENESIS]$ ssh -i genesis_ssh_key.pem  ubuntu@44.204.125.91 grep image ./project-genesis/docker-compose.yml
     image: spytliak/genesis-flask-rest-api:13065f7
