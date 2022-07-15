@@ -176,11 +176,11 @@ jobs:
       continue-on-error: true
       if: steps.APP_instances_ip.outcome == 'success'
       run: |
-        terraform output > terraform.log
-        ls -la terraform.log
+        terraform output > ../../terraform.log
+        ls -la ../../terraform.log
 
     # Upload artifact
-    - name: Upload terraform output
+    - name: Upload terraform output artifact
       if: steps.output.outcome == 'success'
       uses: actions/upload-artifact@v3
       with:
