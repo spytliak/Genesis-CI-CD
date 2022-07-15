@@ -24,13 +24,14 @@ There are packages below that should be installed on the (local) host where you'
 
 ### CI/CD 
 Workflows:
-* [main.yml](/.github/workflows/main.yml)               - the main workflow (Linter, Build and push docker image, Deploy, Report), included TF and Ansible Debug
+* [main.yml](/.github/workflows/main.yml)               - the main workflow (Linter, Build and push docker image, Deploy, Health Check, Report(Slack)), included TF and Ansible Debug
 * [destroy.yml](/.github/workflows/destroy.yml)         - the manual terraform destroy, included TF and Ansible Debug   
 
 Jobs:
   * Python linter 
   * Build and push docker image 
   * Deploy
+  * Health Check
   * Report
   * Terraform Destroy
 
