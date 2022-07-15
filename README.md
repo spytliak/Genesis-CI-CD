@@ -5,9 +5,9 @@ The repository is for Genesis DevOps School.
 [![Terraform Destroy](https://github.com/spytliak/Genesis-CI-CD/actions/workflows/destroy.yml/badge.svg)](https://github.com/spytliak/Genesis-CI-CD/actions/workflows/destroy.yml)
 
 ### Description
-The repo is for creating and configuring an infrastructure in the AWS cloud by *Github Actions* (**CI/CD**) for the RESTful API application.  
+The repo is for creating and configuring an infrastructure in the AWS cloud for the RESTful API application by *Github Actions* (**CI/CD**).  
 Terraform creates: VPC, 2 ec2 instances, RDS, ALB. Also, generate ssh_key, hosts and env files for Ansible.  
-Ansible configures instance, copy files, run docker-compose and make health check  
+Ansible configures instances, copy files, run docker-compose and make health check  
 
 #### Architecture AWS
 ![architecture](images/genesis_aws2.png)  
@@ -24,11 +24,11 @@ There are packages below that should be installed on the (local) host where you'
 
 ### CI/CD 
 Workflows:
-* [main.yml](/.github/workflows/main.yml)               - the main workflow (Linter, Build and push docker image, Deploy, Health Check, Report(Slack)), included TF and Ansible Debug
+* [main.yml](/.github/workflows/main.yml)               - the main workflow (Linter, Build and push docker image, Deploy, Health Check, Report(Slack)), included TF and Ansible Debug for manual troubleshooting
 * [destroy.yml](/.github/workflows/destroy.yml)         - the manual terraform destroy, included TF and Ansible Debug   
 
 Jobs:
-  * Python linter 
+  * Python Linter 
   * Build and push docker image 
   * Deploy
   * Health Check
